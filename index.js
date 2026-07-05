@@ -7,7 +7,20 @@ const myServer = http.createServer((req, res) => {
 
     const log = `${Date.now()}: ${req.url} New Request Received\n`;
     fs.appendFile('log.txt', log, (err, data) =>{
-        res.end("Hello from server");
+        // res.end("Hello from server");
+        switch (req.url) {
+            case '/':
+                res.end("Home Page");
+                break;
+            
+            case '/about':
+                res.end("About page");
+                break;
+
+            default:
+                res.end("404 Page Not Found");
+                break;
+        }
     });
 });
 
